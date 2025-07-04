@@ -95,6 +95,8 @@ Os testes unitários estão no projeto `TestProject` e cobrem as principais regr
 Para rodar os testes:
 - dotnet test TestProject/TestProject.csproj
 
+![Testes unitários](docs/screenshot-tests.png)
+
 ---
 
 ## Imagens da Aplicação
