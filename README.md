@@ -38,9 +38,9 @@ O objetivo é demonstrar domínio de .NET MAUI, MVVM, injeção de dependência,
 ## Arquitetura e Organização
 
 O projeto está dividido em três camadas principais:
-/BTGProject.Core    # Lógica de negócio, ViewModels, Models, Services, AppSettings
-/BTGProject    # Projeto MAUI (UI, Views, Pages, Resources, Converters, DI)
-/TestProject    # Testes unitários (xUnit, Moq)
+- /BTGProject.Core    # Lógica de negócio, ViewModels, Models, Services, AppSettings
+- /BTGProject    # Projeto MAUI (UI, Views, Pages, Resources, Converters, DI)
+- /TestProject    # Testes unitários (xUnit, Moq)
 
 
 ### Principais componentes
@@ -63,14 +63,19 @@ O projeto está dividido em três camadas principais:
 ### Passos
 
 1. **Clone o repositório:**
-- git clone [https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-](https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-.git)
+  ```bash
+  git clone https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-.git
+  ```
 
-2. **Restaure os pacotes:**
-- dotnet restore
-
+3. **Restaure os pacotes:**
+  ```bash
+  dotnet restore
+  ```
 3. **Compile a solução:**
-- dotnet build
-  
+  ```bash
+  dotnet build
+  ```
+
 4. **Execute a aplicação:**
    - Pelo Visual Studio: selecione o projeto `BTGProject` e execute (F5).
    - Ou via terminal:
