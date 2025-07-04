@@ -64,7 +64,7 @@ O projeto está dividido em três camadas principais:
 
 1. **Clone o repositório:**
   ```bash
-  git clone [https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-](https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-.git)
+  git clone https://github.com/GustaBS2003/Teste-Tecnico-BTG-Pactual-.git
   ```
 
 3. **Restaure os pacotes:**
