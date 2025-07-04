@@ -1,8 +1,7 @@
-﻿using BTGProject.Models;
+﻿using BTGProject.Core.Models;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
-namespace BTGProject.Services.Interfaces
+namespace BTGProject.Core.Services.Interfaces
 {
     public interface IClientService
     {

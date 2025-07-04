@@ -1,12 +1,9 @@
-﻿using BTGProject.Models;
+﻿using BTGProject.Core.Services;
+using BTGProject.Core.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Net;
-using System.Windows.Input;
-using System.Xml.Linq;
 
-namespace BTGProject.ViewModels
+namespace BTGProject.Core.ViewModels
 {
     public partial class ClientEditViewModel : ObservableObject
     {
@@ -25,12 +22,15 @@ namespace BTGProject.ViewModels
         public string PageTitle { get; }
 
         private readonly Guid? _clientId;
+        private readonly IAlertService _alertService;
 
         public Action<Client> OnSaved { get; set; }
         public Action OnCanceled { get; set; }
 
-        public ClientEditViewModel(Client? client = null)
+        public ClientEditViewModel(IAlertService alertService, Client? client = null)
         {
+            _alertService = alertService ?? throw new ArgumentNullException(nameof(alertService));
+
             if (client != null)
             {
                 _clientId = client.Id;
@@ -47,18 +47,18 @@ namespace BTGProject.ViewModels
         }
 
         [RelayCommand]
-        private void Save()
+        private async Task Save()
         {
             if (string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(Lastname))
             {
-                Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter valid name and last name.", "OK");
+                await _alertService.ShowAlertAsync("Validation Error", "Please enter valid name and last name.", "OK");
                 return;
             }
             if (!int.TryParse(Age, out int ageValue) ||
                 ageValue < 0)
             {
-                Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter valid age.", "OK");
+                await _alertService.ShowAlertAsync("Validation Error", "Please enter valid age.", "OK");
                 return;
             }
 

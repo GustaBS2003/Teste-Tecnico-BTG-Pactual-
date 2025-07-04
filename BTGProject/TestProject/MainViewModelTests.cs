@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using BTGProject.Models;
-using BTGProject.Services.Interfaces;
-using BTGProject.ViewModels;
+using BTGProject.Core.Models;
+using BTGProject.Core.Services;
+using BTGProject.Core.Services.Interfaces;
+using BTGProject.Core.ViewModels;
 using Moq;
 
 public class MainViewModelTests
 {
     private readonly Mock<IClientService> _clientServiceMock;
-    private readonly Mock<IServiceProvider> _serviceProviderMock;
+    private readonly Mock<INavigationService> _navigationServiceMock;
+    private readonly Mock<IAlertService> _alertProviderMock;
     private readonly MainViewModel _viewModel;
 
     public MainViewModelTests()
     {
         _clientServiceMock = new Mock<IClientService>();
-        _serviceProviderMock = new Mock<IServiceProvider>();
+        _navigationServiceMock = new Mock<INavigationService>();
+        _alertProviderMock = new Mock<IAlertService>();
         _clientServiceMock.SetupGet(s => s.Clients).Returns(new ObservableCollection<Client>());
-        _viewModel = new MainViewModel(_clientServiceMock.Object, _serviceProviderMock.Object);
+        _viewModel = new MainViewModel(_clientServiceMock.Object, _navigationServiceMock.Object, _alertProviderMock.Object);
     }
 
     [Fact]
@@ -56,8 +59,8 @@ public class MainViewModelTests
             .Callback<Client>(c => wasCalled = true)
             .Returns(Task.CompletedTask);
 
-        // Simulate the dialog result by invoking OnSaved directly
-        var editVm = new BTGProject.ViewModels.ClientEditViewModel();
+        var alertService = _alertProviderMock.Object;
+        var editVm = new ClientEditViewModel(alertService);
         editVm.OnSaved = async (client) =>
         {
             await _clientServiceMock.Object.AddClientAsync(client);
@@ -83,8 +86,9 @@ public class MainViewModelTests
             .Callback<Client>(c => wasCalled = true)
             .Returns(Task.CompletedTask);
 
-        // Simulate the dialog result by invoking OnSaved directly
-        var editVm = new BTGProject.ViewModels.ClientEditViewModel(client);
+        var alertService = _alertProviderMock.Object;
+        var editVm = new ClientEditViewModel(alertService);
+
         editVm.OnSaved = async (updatedClient) =>
         {
             await _clientServiceMock.Object.UpdateClientAsync(updatedClient);

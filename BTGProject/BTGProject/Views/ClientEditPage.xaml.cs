@@ -1,4 +1,4 @@
-using BTGProject.ViewModels;
+using BTGProject.Core.ViewModels;
 
 namespace BTGProject.Views;
 

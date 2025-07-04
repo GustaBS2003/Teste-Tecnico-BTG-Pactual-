@@ -1,25 +1,26 @@
-﻿using BTGProject.Models;
-using BTGProject.ViewModels;
-using Xunit;
+﻿using BTGProject.Core.Services;
+using BTGProject.Core.ViewModels;
+using Moq;
 
 public class ClientEditViewModelTests
 {
     [Fact]
     public void Save_ValidData_CallsOnSaved()
     {
-        // Arrange
+        // Arrange  
         var called = false;
-        var vm = new ClientEditViewModel();
+        var alertServiceMock = new Mock<IAlertService>(); // Mock the IAlertService dependency  
+        var vm = new ClientEditViewModel(alertServiceMock.Object, null); // Pass the required parameters  
         vm.Name = "John";
         vm.Lastname = "Doe";
         vm.Age = "30";
         vm.Address = "123 Street";
         vm.OnSaved = (client) => called = true;
 
-        // Act
+        // Act  
         vm.SaveCommand.Execute(null);
 
-        // Assert
+        // Assert  
         Assert.True(called);
     }
 
@@ -27,7 +28,8 @@ public class ClientEditViewModelTests
     public void Save_InvalidAge_DoesNotCallOnSaved()
     {
         var called = false;
-        var vm = new ClientEditViewModel();
+        var alertServiceMock = new Mock<IAlertService>(); // Mock the IAlertService dependency  
+        var vm = new ClientEditViewModel(alertServiceMock.Object, null); // Pass the required parameters  
         vm.Name = "John";
         vm.Lastname = "Doe";
         vm.Age = "abc";

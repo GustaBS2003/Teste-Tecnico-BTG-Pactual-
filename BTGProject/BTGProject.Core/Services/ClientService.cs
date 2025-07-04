@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using BTGProject.Models;
-using BTGProject.Services.Interfaces;
+using BTGProject.Core.Models;
+using BTGProject.Core.Services.Interfaces;
 
-namespace BTGProject.Services
+namespace BTGProject.Core.Services
 {
     public class ClientService : IClientService
     {

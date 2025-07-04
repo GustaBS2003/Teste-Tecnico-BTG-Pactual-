@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BTGProject\BTGProject.csproj" />
+    <ProjectReference Include="..\BTGProject.Core\BTGProject.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
