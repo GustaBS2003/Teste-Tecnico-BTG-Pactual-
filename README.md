@@ -95,6 +95,8 @@ Os testes unitários estão no projeto `TestProject` e cobrem as principais regr
 Para rodar os testes:
 - dotnet test TestProject/TestProject.csproj
 
+![Testes unitários](docs/screenshot-tests.png)
+
 ---
 
 ## Imagens da Aplicação
@@ -103,10 +105,13 @@ Para rodar os testes:
 ![Tela principal](docs/screenshot-main.png)
 
 ### Tela de adicionar cliente
-![Tela de edição](docs/screenshot-add.png)
+![Tela de adição](docs/screenshot-add.png)
 
 ### Tela de editar cliente
 ![Tela de edição](docs/screenshot-edit.png)
+
+### Mensagem para excluir cliente
+![Mensagem para excluir cliente](docs/screenshot-deletemessage.png)
 
 ---
 
