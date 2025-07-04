@@ -50,11 +50,15 @@ namespace BTGProject.ViewModels
         private void Save()
         {
             if (string.IsNullOrWhiteSpace(Name) ||
-                string.IsNullOrWhiteSpace(Lastname) ||
-                !int.TryParse(Age, out int ageValue) ||
+                string.IsNullOrWhiteSpace(Lastname))
+            {
+                Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter valid name and last name.", "OK");
+                return;
+            }
+            if (!int.TryParse(Age, out int ageValue) ||
                 ageValue < 0)
             {
-                Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter valid data.", "OK");
+                Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter valid age.", "OK");
                 return;
             }
 
